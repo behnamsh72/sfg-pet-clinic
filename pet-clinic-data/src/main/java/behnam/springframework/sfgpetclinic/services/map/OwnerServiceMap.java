@@ -2,9 +2,10 @@ package behnam.springframework.sfgpetclinic.services.map;
 
 import behnam.springframework.sfgpetclinic.model.Owner;
 import behnam.springframework.sfgpetclinic.services.CrudService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
     @Override
     public Set<Owner> findAll() {

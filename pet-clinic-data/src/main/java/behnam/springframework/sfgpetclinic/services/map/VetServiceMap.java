@@ -2,9 +2,10 @@ package behnam.springframework.sfgpetclinic.services.map;
 
 import behnam.springframework.sfgpetclinic.model.Vet;
 import behnam.springframework.sfgpetclinic.services.CrudService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class VetServiceMap extends AbstractMapService<Vet,Long> implements CrudService<Vet, Long> {
     @Override
     public Set<Vet> findAll() {
