@@ -1,12 +1,26 @@
 package behnam.springframework.sfgpetclinic.services.map;
 
 import behnam.springframework.sfgpetclinic.model.Owner;
+import behnam.springframework.sfgpetclinic.model.Pet;
 import behnam.springframework.sfgpetclinic.services.CrudService;
+import behnam.springframework.sfgpetclinic.services.PetService;
+import behnam.springframework.sfgpetclinic.services.PetTypeService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.function.Consumer;
+
 @Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
+
+    private final PetTypeService petTypeService;
+    private final PetService petService;
+
+    public OwnerServiceMap(PetTypeService petTypeService, PetService petService) {
+        this.petTypeService = petTypeService;
+        this.petService = petService;
+    }
+
     @Override
     public Set<Owner> findAll() {
         return super.findAll();
@@ -19,7 +33,30 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
 
     @Override
     public Owner save(Owner object) {
-        return super.save(object.getId(),object);
+        if (object != null) {
+            if (object.getPets() != null) {
+                object.getPets().forEach(new Consumer<Pet>() {
+                    @Override
+                    public void accept(Pet pet) {
+                        if (pet.getPetType() != null) {
+                            if (pet.getPetType().getId() == null) {
+                                pet.setPetType(petTypeService.save(pet.getPetType()));
+                            }
+                        } else {
+                            throw new RuntimeException("Pet Type is Required");
+                        }
+                        if (pet.getId() == null) {
+                            Pet savedPet = petService.save(pet);
+                            pet.setId(savedPet.getId());
+                        }
+                    }
+                });
+            }
+            return super.save(object.getId(), object);
+
+        } else {
+            return null;
+        }
     }
 
     @Override
