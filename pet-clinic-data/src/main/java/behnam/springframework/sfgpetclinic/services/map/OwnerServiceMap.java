@@ -5,6 +5,8 @@ import behnam.springframework.sfgpetclinic.model.Pet;
 import behnam.springframework.sfgpetclinic.services.CrudService;
 import behnam.springframework.sfgpetclinic.services.PetService;
 import behnam.springframework.sfgpetclinic.services.PetTypeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -12,7 +14,6 @@ import java.util.function.Consumer;
 
 @Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
-
     private final PetTypeService petTypeService;
     private final PetService petService;
 

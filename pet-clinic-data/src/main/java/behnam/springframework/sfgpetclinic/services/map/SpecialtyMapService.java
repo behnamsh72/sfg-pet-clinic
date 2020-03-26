@@ -1,13 +1,13 @@
 package behnam.springframework.sfgpetclinic.services.map;
 
 import behnam.springframework.sfgpetclinic.model.Speciality;
-import behnam.springframework.sfgpetclinic.services.SpecialitiesService;
+import behnam.springframework.sfgpetclinic.services.SpecialtyService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class SpecialityMapService extends AbstractMapService<Speciality, Long> implements SpecialitiesService {
+public class SpecialtyMapService extends AbstractMapService<Speciality, Long> implements SpecialtyService {
     @Override
     public Set<Speciality> findAll() {
         return super.findAll();
