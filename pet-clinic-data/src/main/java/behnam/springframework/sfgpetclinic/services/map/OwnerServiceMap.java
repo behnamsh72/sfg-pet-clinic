@@ -14,6 +14,7 @@ import java.util.function.Consumer;
 
 @Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
+/*
     private final PetTypeService petTypeService;
     private final PetService petService;
 
@@ -21,6 +22,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
         this.petTypeService = petTypeService;
         this.petService = petService;
     }
+*/
 
     @Override
     public Set<Owner> findAll() {
@@ -34,7 +36,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
 
     @Override
     public Owner save(Owner object) {
-        if (object != null) {
+/*        if (object != null) {
             if (object.getPets() != null) {
                 object.getPets().forEach(new Consumer<Pet>() {
                     @Override
@@ -52,12 +54,12 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
                         }
                     }
                 });
-            }
+            }*/
             return super.save(object.getId(), object);
 
-        } else {
+/*        } else {
             return null;
-        }
+        }*/
     }
 
     @Override
