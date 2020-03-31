@@ -4,6 +4,7 @@ import behnam.springframework.sfgpetclinic.model.Speciality;
 import behnam.springframework.sfgpetclinic.model.Vet;
 import behnam.springframework.sfgpetclinic.services.CrudService;
 import behnam.springframework.sfgpetclinic.services.SpecialtyService;
+import behnam.springframework.sfgpetclinic.services.VetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 @Service
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService{
     private final SpecialtyService specialtyService;
     @Autowired
     public VetServiceMap(SpecialtyService specialtyService) {
