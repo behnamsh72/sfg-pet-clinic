@@ -3,6 +3,7 @@ package behnam.springframework.sfgpetclinic.services.map;
 import behnam.springframework.sfgpetclinic.model.Owner;
 import behnam.springframework.sfgpetclinic.model.Pet;
 import behnam.springframework.sfgpetclinic.services.CrudService;
+import behnam.springframework.sfgpetclinic.services.OwnerService;
 import behnam.springframework.sfgpetclinic.services.PetService;
 import behnam.springframework.sfgpetclinic.services.PetTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,8 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 import java.util.function.Consumer;
 
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
-/*
+@Service
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
     private final PetTypeService petTypeService;
     private final PetService petService;
 
@@ -21,7 +22,6 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
         this.petTypeService = petTypeService;
         this.petService = petService;
     }
-*/
 
     @Override
     public Set<Owner> findAll() {
@@ -35,7 +35,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
 
     @Override
     public Owner save(Owner object) {
-/*        if (object != null) {
+        if (object != null) {
             if (object.getPets() != null) {
                 object.getPets().forEach(new Consumer<Pet>() {
                     @Override
@@ -53,12 +53,11 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
                         }
                     }
                 });
-            }*/
+            }
             return super.save(object.getId(), object);
-
-/*        } else {
+        } else {
             return null;
-        }*/
+        }
     }
 
     @Override
@@ -69,5 +68,10 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     @Override
     public Owner findById(Long id) {
         return this.findById(id);
+    }
+
+    @Override
+    public Owner findByLastName(String lastName) {
+        return null;
     }
 }
