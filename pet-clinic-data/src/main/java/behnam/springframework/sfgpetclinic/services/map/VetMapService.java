@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@Service
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetService{
     private final SpecialtyService specialtyService;
     @Autowired
